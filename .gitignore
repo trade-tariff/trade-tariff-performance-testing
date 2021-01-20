@@ -1,2 +1,20 @@
-*.class
+# sbt
+.bsp
+sbt.json
+bin/
+target/
+build/
+project
+!project/build.properties
+!project/plugins.sbt
+
+# intellij idea
 *.log
+*.iml
+*.ipr
+*.iws
+.idea
+
+
+#general
+*.class
