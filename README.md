@@ -30,3 +30,21 @@ or
 ```
 sbt "gatling:testOnly tradetariff.SectionsSimulation"
 ```
+
+
+
+
+# Simulations
+
+## tradetariff.SectionsSimultation
+
+In this simulation a VU (Virtual User) does the following steps:
+- Gets the Sections index at /sections
+- Requests a random Section /sections/[1-21]
+- Requests a random chapter in the previously selected section
+
+
+## tradetariff.CommoditiesSimultation
+
+In this simulation a VU (Virtual User) does the following steps:
+- Requests a random commodity from the `commodities.csv` list
