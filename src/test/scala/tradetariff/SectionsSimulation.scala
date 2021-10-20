@@ -10,7 +10,7 @@ import scala.concurrent.duration._
 class SectionsSimulation extends Simulation {
 
   val httpProtocol: HttpProtocolBuilder = http
-    .baseUrl("https://tariff-frontend-dev.london.cloudapps.digital")
+    .baseUrl("https://tariff-frontend-staging.london.cloudapps.digital")
 
   val sectionFeeder = jsonFile("sections.json").random
 

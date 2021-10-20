@@ -10,7 +10,7 @@ import io.gatling.http.request.builder.HttpRequestBuilder.toActionBuilder
 class CommoditiesSimulation extends Simulation   {
 
   val httpProtocol: HttpProtocolBuilder = http
-    .baseUrl("https://tariff-frontend-dev.london.cloudapps.digital")
+    .baseUrl("https://tariff-frontend-staging.london.cloudapps.digital")
 
   val commoditiesFeeder = csv("commodities.csv").random
 
