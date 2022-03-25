@@ -26,7 +26,7 @@ class CommoditiesSimulation extends Simulation   {
           .get("/xi/commodities/${commodity}")
       )
 
-  val commoditiesScenario = scenario("Sections").exec(request)
+  val commoditiesScenario = scenario("Commodities").exec(request)
 
   setUp(
     commoditiesScenario.inject(
