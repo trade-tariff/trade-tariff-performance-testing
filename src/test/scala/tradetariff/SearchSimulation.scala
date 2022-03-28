@@ -25,7 +25,7 @@ class SearchSimulation extends Simulation {
   setUp(
     searchScenario.inject(
       constantConcurrentUsers(1).during(10.seconds), // 1
-      rampConcurrentUsers(1).to(100).during(60.seconds)
+      rampConcurrentUsers(1).to(20).during(60.seconds)
     )
   ).protocols(httpProtocol)
 }
