@@ -13,7 +13,7 @@ class BrowseSimulation extends Simulation {
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("en-US,en;q=0.5")
 
-  val feeder = csv("browse-commodities.csv").random
+  val feeder = csv("random-browse-commodities.csv").queue.circular
 
   val request = feed(feeder)
       .exec(
@@ -40,8 +40,8 @@ class BrowseSimulation extends Simulation {
 
     setUp(
       scn.inject(
-        constantConcurrentUsers(1).during(10.seconds), // 1
-        rampConcurrentUsers(1).to(20).during(60.seconds) // 2
+        constantConcurrentUsers(1).during(30.seconds), // 1
+        rampConcurrentUsers(1).to(50).during(120.seconds) // 2
       )
     ).protocols(httpProtocol)
 }
