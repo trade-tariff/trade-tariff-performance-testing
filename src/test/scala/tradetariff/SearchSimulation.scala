@@ -18,6 +18,7 @@ class SearchSimulation extends Simulation {
     .exec(
       http("Search")
         .get("/search?q=${query}")
+        .basicAuth(System.getenv("BASIC_AUTH_USERNAME"), System.getenv("BASIC_AUTH_PASSWORD"))
     ).pause(1)
 
   val searchScenario = scenario("Search").exec(request)

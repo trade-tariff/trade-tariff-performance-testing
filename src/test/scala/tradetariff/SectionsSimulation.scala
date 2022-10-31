@@ -8,7 +8,6 @@ import io.gatling.http.request.builder.HttpRequestBuilder.toActionBuilder
 import scala.concurrent.duration._
 
 class SectionsSimulation extends Simulation {
-
   val httpProtocol: HttpProtocolBuilder = http
     .baseUrl("https://tariff-frontend-staging.london.cloudapps.digital")
 
@@ -17,6 +16,7 @@ class SectionsSimulation extends Simulation {
   val request = exec(
     http("Sections index")
       .get("/sections")
+      .basicAuth(System.getenv("BASIC_AUTH_USERNAME"), System.getenv("BASIC_AUTH_PASSWORD"))
   ).pause(1)
     .feed(sectionFeeder)
     .exec(

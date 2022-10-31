@@ -19,6 +19,7 @@ class CommoditiesSimulation extends Simulation   {
       .exec(
         http("UK Commodity")
           .get("/commodities/${commodity}")
+          .basicAuth(System.getenv("BASIC_AUTH_USERNAME"), System.getenv("BASIC_AUTH_PASSWORD"))
       )
       .pause(1)
       .exec(
