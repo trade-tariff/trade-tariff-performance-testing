@@ -30,3 +30,4 @@ class SearchSimulation extends Simulation {
     )
   ).protocols(httpProtocol)
 }
+
