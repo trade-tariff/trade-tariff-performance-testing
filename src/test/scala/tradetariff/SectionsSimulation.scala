@@ -16,7 +16,6 @@ class SectionsSimulation extends Simulation {
   val request = exec(
     http("Sections index")
       .get("/sections")
-      .basicAuth(System.getenv("BASIC_AUTH_USERNAME"), System.getenv("BASIC_AUTH_PASSWORD"))
   ).pause(1)
     .feed(sectionFeeder)
     .exec(

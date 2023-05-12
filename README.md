@@ -3,36 +3,48 @@ Performance testing setup for Trade Tariff
 
 # Getting Started
 
-Start SBT
+Install Docker
+--------------
+
+See [Docker installation instructions](https://docs.docker.com/engine/install/)
+
+Start SBT Shell (optional)
 ---------
+
 ```bash
-$ sbt
+$ ./sbt shell
 ```
 
 Run all simulations
 -------------------
 
+From with SBT
+
 ```bash
 > gatling:test
+
 ```
-or 
+
+or from your shell
+
 ```
-sbt gatling:test
+$ ./sbt
 ```
 
 Run a single simulation (e.g SectionsSimulation)
 -----------------------
 
+From within SBT
+
 ```bash
 > gatling:testOnly tradetariff.SectionsSimulation
 ```
-or 
+
+or from your shell
+
 ```
-sbt "gatling:testOnly tradetariff.SectionsSimulation"
+$ ./sbt "gatling:testOnly tradetariff.SectionsSimulation"
 ```
-
-
-
 
 # Simulations
 
