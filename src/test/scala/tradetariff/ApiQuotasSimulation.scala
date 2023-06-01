@@ -14,7 +14,6 @@ class ApiQuotasSimulation extends Simulation {
   val request = exec(
     http("Get quota order numbers")
       .get("/quota_order_numbers")
-      .basicAuth(System.getenv("BASIC_AUTH_USERNAME"), System.getenv("BASIC_AUTH_PASSWORD"))
   ).pause(1)
 
   val sectionsScenario = scenario("API V2 Quotas").exec(request)

@@ -19,7 +19,6 @@ class BrowseSimulation extends Simulation {
       .exec(
         http("Load Section ${section}")
           .get("/sections/${section}")
-          .basicAuth(System.getenv("BASIC_AUTH_USERNAME"), System.getenv("BASIC_AUTH_PASSWORD"))
       )
       .pause(1)
       .exec(
