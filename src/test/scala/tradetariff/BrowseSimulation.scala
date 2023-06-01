@@ -17,23 +17,23 @@ class BrowseSimulation extends Simulation {
 
   val request = feed(feeder)
       .exec(
-        http("Load Section ${section}")
-          .get("/sections/${section}")
+        http("Load Section #{section}")
+          .get("/sections/#{section}")
       )
       .pause(1)
       .exec(
-        http("Load Chapter ${chapter}")
-          .get("/chapters/${chapter}")
+        http("Load Chapter #{chapter}")
+          .get("/chapters/#{chapter}")
       )
       .pause(1)
       .exec(
-        http("Load Heading ${heading}")
-          .get("/headings/${heading}")
+        http("Load Heading #{heading}")
+          .get("/headings/#{heading}")
       )
       .pause(1)
       .exec(
-        http("Load Commodity ${commodity}")
-          .get("/commodities/${commodity}")
+        http("Load Commodity #{commodity}")
+          .get("/commodities/#{commodity}")
       )
 
     val scn = scenario("BrowseSimulation").exec(request)
