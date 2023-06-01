@@ -3,7 +3,6 @@ package tradetariff
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
-import io.gatling.http.request.builder.HttpRequestBuilder.toActionBuilder
 
 import scala.concurrent.duration._
 
@@ -17,7 +16,7 @@ class SearchSimulation extends Simulation {
   val request = feed(searchQueries)
     .exec(
       http("Search")
-        .get("/search?q=${query}")
+        .get("/search?q=#{query}")
     ).pause(1)
 
   val searchScenario = scenario("Search").exec(request)

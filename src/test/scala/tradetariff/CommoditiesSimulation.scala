@@ -4,8 +4,6 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
 import io.gatling.http.protocol.HttpProtocolBuilder
-import io.gatling.http.request.builder.HttpRequestBuilder.toActionBuilder
-
 
 class CommoditiesSimulation extends Simulation   {
 
@@ -18,12 +16,12 @@ class CommoditiesSimulation extends Simulation   {
     feed(commoditiesFeeder)
       .exec(
         http("UK Commodity")
-          .get("/commodities/${commodity}")
+          .get("/commodities/#{commodity}")
       )
       .pause(1)
       .exec(
         http("XI Commodity")
-          .get("/xi/commodities/${commodity}")
+          .get("/xi/commodities/#{commodity}")
       )
 
   val commoditiesScenario = scenario("Commodities").exec(request)

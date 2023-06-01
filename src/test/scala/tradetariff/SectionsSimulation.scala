@@ -3,7 +3,6 @@ package tradetariff
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
-import io.gatling.http.request.builder.HttpRequestBuilder.toActionBuilder
 
 import scala.concurrent.duration._
 
@@ -19,13 +18,13 @@ class SectionsSimulation extends Simulation {
   ).pause(1)
     .feed(sectionFeeder)
     .exec(
-      http("Section ${section}")
-        .get("/sections/${section}")
+      http("Section #{section}")
+        .get("/sections/#{section}")
     )
     .pause(1)
     .exec(
       http("Random Chapter")
-        .get("/chapters/${chapters.random()}")
+        .get("/chapters/#{chapters.random()}")
     )
 
   val sectionsScenario = scenario("Sections").exec(request)
