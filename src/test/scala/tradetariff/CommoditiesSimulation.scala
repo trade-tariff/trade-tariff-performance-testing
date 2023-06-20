@@ -8,9 +8,9 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 class CommoditiesSimulation extends Simulation   {
 
   val httpProtocol: HttpProtocolBuilder = http
-    .baseUrl("https://tariff-frontend-staging.london.cloudapps.digital")
+    .baseUrl(sys.env("PERFTESTURL"))
 
-  val commoditiesFeeder = csv("commodities.csv").random
+  val commoditiesFeeder = csv("5000-commodities.csv").queue.circular
 
   val request =
     feed(commoditiesFeeder)
