@@ -46,6 +46,13 @@ or from your shell
 $ ./sbt "gatling:testOnly tradetariff.SectionsSimulation"
 ```
 
+Setting test URL
+------------
+
+By default the app will use the staging url via the CDN.
+
+Alternative URLs can be used by setting the `PERFTESTURL` env var
+
 # Simulations
 
 ## tradetariff.SectionsSimultation
