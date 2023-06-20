@@ -29,7 +29,8 @@ class CommoditiesSimulation extends Simulation   {
   setUp(
     commoditiesScenario.inject(
       constantConcurrentUsers(1).during(10.seconds), // 1
-      rampConcurrentUsers(1).to(10).during(30.seconds)
+      rampConcurrentUsers(1).to(30).during(60.seconds),
+      constantConcurrentUsers(30).during(830.seconds)
     )
   ).protocols(httpProtocol)
 }
