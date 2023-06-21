@@ -8,7 +8,7 @@ import io.gatling.http.Predef._
 class BrowseSimulation extends Simulation {
 
   private val httpProtocol = http
-    .baseUrl("https://staging.trade-tariff.service.gov.uk")
+    .baseUrl(sys.env("PERFTESTURL"))
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8")
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("en-US,en;q=0.5")
@@ -18,22 +18,22 @@ class BrowseSimulation extends Simulation {
   val request = feed(feeder)
       .exec(
         http("Load Section #{section}")
-          .get("/sections/#{section}")
+          .head("/sections/#{section}")
       )
       .pause(1)
       .exec(
         http("Load Chapter #{chapter}")
-          .get("/chapters/#{chapter}")
+          .head("/chapters/#{chapter}")
       )
       .pause(1)
       .exec(
         http("Load Heading #{heading}")
-          .get("/headings/#{heading}")
+          .head("/headings/#{heading}")
       )
       .pause(1)
       .exec(
         http("Load Commodity #{commodity}")
-          .get("/commodities/#{commodity}")
+          .head("/commodities/#{commodity}")
       )
 
     val scn = scenario("BrowseSimulation").exec(request)

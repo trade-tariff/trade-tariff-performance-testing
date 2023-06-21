@@ -8,23 +8,23 @@ import scala.concurrent.duration._
 
 class SectionsSimulation extends Simulation {
   val httpProtocol: HttpProtocolBuilder = http
-    .baseUrl("https://tariff-frontend-staging.london.cloudapps.digital")
+    .baseUrl(sys.env("PERFTESTURL"))
 
-  val sectionFeeder = jsonFile("sections.json").random
+  val sectionFeeder = jsonFile("sections.json").queue.circular
 
   val request = exec(
     http("Sections index")
-      .get("/sections")
+      .head("/sections")
   ).pause(1)
     .feed(sectionFeeder)
     .exec(
       http("Section #{section}")
-        .get("/sections/#{section}")
+        .head("/sections/#{section}")
     )
     .pause(1)
     .exec(
       http("Random Chapter")
-        .get("/chapters/#{chapters.random()}")
+        .head("/chapters/#{chapters.random()}")
     )
 
   val sectionsScenario = scenario("Sections").exec(request)

@@ -8,9 +8,9 @@ import io.gatling.http.protocol.HttpProtocolBuilder
 class CommoditiesSimulation extends Simulation   {
 
   val httpProtocol: HttpProtocolBuilder = http
-    .baseUrl("https://tariff-frontend-staging.london.cloudapps.digital")
+    .baseUrl(sys.env("PERFTESTURL"))
 
-  val commoditiesFeeder = csv("commodities.csv").random
+  val commoditiesFeeder = csv("5000-commodities.csv").queue.circular
 
   val request =
     feed(commoditiesFeeder)
@@ -29,7 +29,8 @@ class CommoditiesSimulation extends Simulation   {
   setUp(
     commoditiesScenario.inject(
       constantConcurrentUsers(1).during(10.seconds), // 1
-      rampConcurrentUsers(1).to(10).during(30.seconds)
+      rampConcurrentUsers(1).to(30).during(60.seconds),
+      constantConcurrentUsers(30).during(830.seconds)
     )
   ).protocols(httpProtocol)
 }
