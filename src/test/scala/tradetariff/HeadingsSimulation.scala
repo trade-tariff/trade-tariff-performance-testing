@@ -5,33 +5,32 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
-class CommoditiesSimulation extends Simulation   {
+class HeadingsSimulation extends Simulation   {
 
   val httpProtocol: HttpProtocolBuilder = http
     .baseUrl(sys.env("PERFTESTURL"))
 
-  val commoditiesFeeder = csv("5000-commodities.csv").queue.circular
+  val headingsFeeder = csv("all-headings.csv").queue.circular
 
   val request =
-    feed(commoditiesFeeder)
+    feed(headingsFeeder)
       .exec(
         http("UK Commodity")
-          .head("/commodities/#{commodity}")
+          .head("/headings/#{heading}")
       )
       .pause(1)
       .exec(
         http("XI Commodity")
-          .head("/xi/commodities/#{commodity}")
+          .head("/xi/headings/#{heading}")
       )
 
-  val commoditiesScenario = scenario("Commodities").exec(request)
+  val headingsScenario = scenario("Headings").exec(request)
 
   setUp(
-    commoditiesScenario.inject(
+    headingsScenario.inject(
       constantConcurrentUsers(1).during(10.seconds), // 1
-      rampConcurrentUsers(1).to(30).during(60.seconds),
-      constantConcurrentUsers(30).during(830.seconds)
+      rampConcurrentUsers(1).to(10).during(60.seconds),
+      constantConcurrentUsers(10).during(600.seconds)
     )
   ).protocols(httpProtocol)
 }
-

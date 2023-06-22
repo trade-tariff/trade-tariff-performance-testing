@@ -16,7 +16,7 @@ class SearchSimulation extends Simulation {
   val request = feed(searchQueries)
     .exec(
       http("Search")
-        .get("/search?q=#{query}")
+        .head("/search?q=#{query}")
     ).pause(1)
 
   val searchScenario = scenario("Search").exec(request)
