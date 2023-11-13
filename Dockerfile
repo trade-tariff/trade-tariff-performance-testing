@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk
+FROM --platform=linux/amd64 eclipse-temurin:17-jdk
 
 ENV PATH="$PATH:/root/.local/share/coursier/bin"
 
