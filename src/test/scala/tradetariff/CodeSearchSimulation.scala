@@ -11,7 +11,6 @@ class CodeSearchSimulation extends Simulation {
   val httpProtocol: HttpProtocolBuilder = http
     .baseUrl("https://search.staging.trade-tariff.service.gov.uk")
     .header("X-Api-Key", sys.props.get("fpoSearchApiKey").orNull)
-    .header("X-Api-Client-Id", "flibble")
     .header("Content-Type", "application/json")
 
   val codeSearch = csv("fpo-code-search.csv").random
