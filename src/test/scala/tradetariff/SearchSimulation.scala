@@ -9,7 +9,7 @@ import scala.concurrent.duration._
 class SearchSimulation extends Simulation {
 
   val httpProtocol: HttpProtocolBuilder = http
-    .baseUrl("https://tariff-frontend-staging.london.cloudapps.digital")
+    .baseUrl(sys.env("PERFTESTURL"))
 
   val searchQueries = csv("search_queries.csv").random
 
