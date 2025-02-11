@@ -23,4 +23,3 @@ class ApiQuotasSimulation extends Simulation {
     )
   ).protocols(httpProtocol)
 }
-

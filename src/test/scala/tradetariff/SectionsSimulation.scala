@@ -35,4 +35,3 @@ class SectionsSimulation extends Simulation {
     )
   ).protocols(httpProtocol)
 }
-

@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 import scala.concurrent.duration._
 import io.gatling.http.protocol.HttpProtocolBuilder
 
-class CommoditiesSimulation extends Simulation   {
+class ApiCommoditiesSimulation extends Simulation   {
 
   val httpProtocol: HttpProtocolBuilder = http
     .baseUrl(sys.env("PERFTESTURL"))
@@ -16,12 +16,12 @@ class CommoditiesSimulation extends Simulation   {
     feed(commoditiesFeeder)
       .exec(
         http("UK Commodity")
-          .head("/commodities/#{commodity}")
+          .head("/api/v2/commodities/#{commodity}")
       )
       .pause(1)
       .exec(
         http("XI Commodity")
-          .head("/xi/commodities/#{commodity}")
+          .head("/xi/api/v2/commodities/#{commodity}")
       )
 
   val commoditiesScenario = scenario("Commodities").exec(request)

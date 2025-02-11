@@ -1,5 +1,5 @@
 # trade-tariff-performance-testing
-Performance testing setup for Trade Tariff 
+Performance testing setup for Trade Tariff
 
 # Getting Started
 
